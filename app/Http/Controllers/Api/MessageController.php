@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Model\User;
-use App\Http\Request\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return User::all();
+        return Message::all();
     }
 
     /**
@@ -22,7 +21,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message
     }
 
     /**
@@ -30,23 +29,20 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Message::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $message = Message::findOrFail($id);
+
+        $message->delete();
+
+        return $message;
     }
 
     /**

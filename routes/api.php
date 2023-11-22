@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::get('/message', [MessageController::class, 'index']);
+Route::get('/message/{id}', [MessageController::class, 'show']);
+Route::delete('/message', [MessageController::class, 'destroy']);
+Route::post('/message', [MessageController::class, 'store']) ->name('message.store');
 
 // Route::get('/user', [UserController::class, 'index']);
 // Route::get('/user/{id}', [UserController::class, 'show']);
